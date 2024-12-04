@@ -1,13 +1,18 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-success navbar-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="https://github.com/">
-            Navbar
-          </a>
+          <Link
+            className="navbar-brand fs-1 fst-italic"
+            to="https://github.com/"
+          >
+            GOFOOD
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -22,23 +27,17 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/login"
+                >
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
                   Features
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Pricing
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">
-                  Disabled
                 </a>
               </li>
             </ul>
