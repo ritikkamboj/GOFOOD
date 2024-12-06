@@ -19,12 +19,12 @@ function Home() {
             <h5 class="card-title">Card title</h5>
             <p class="card-text">Here comes the food things</p>
             <div className="container w-100 text-white">
-              <select className="w-100 bg-success  m-2 text-light">
+              <select className="bg-success  m-2 text-light">
                 {Array.from(Array(6), (x, i) => (
                   <option key={i + 1}>{i + 1}</option>
                 ))}
               </select>
-              <select className="w-100 bg-success m-2 text-light">
+              <select className="bg-success m-2 text-light">
                 <option value="full">Full</option>
                 <option value="half">Half</option>
               </select>
