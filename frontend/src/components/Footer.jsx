@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function Footer() {
   return (
     <div>
       <footer className="py-3 my-4">
-        <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+        {/* <ul className="nav justify-content-center border-bottom pb-3 mb-3">
           <li className="nav-item">
             <Link to="#" className="nav-link px-2 text-muted">
               Home
@@ -31,7 +31,7 @@ function Footer() {
               About
             </Link>
           </li>
-        </ul>
+        </ul> */}
         <p className="text-center text-muted">© 2024 GOFOOD, Inc</p>
       </footer>
     </div>
