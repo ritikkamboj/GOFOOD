@@ -9,13 +9,16 @@ function Carousal() {
         className="carousel slide"
         data-ride="carousel"
       >
-        <div className="carousel-inner">
+        <div className="carousel-inner" style={{ maxHeight: "500px" }}>
           <div className="carousel-item active">
             <img
               className="d-block w-100"
               src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600"
               alt="First slide"
-              style={{ filter: "brightness(50%)" }}
+              style={{
+                filter: "brightness(50%)",
+                objectFit: "cover !important",
+              }}
             />
           </div>
           <div className="carousel-item">
