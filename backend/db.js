@@ -1,16 +1,20 @@
 const mongoose = require('mongoose');
 
-const mongodbURI = "mongodb+srv://gofood:gofood123@gofood.vreo1.mongodb.net/?retryWrites=true&w=majority&appName=GOFOOD"
+const mongodbURI = "mongodb+srv://gofood:gofood123@gofood.vreo1.mongodb.net/gofood?retryWrites=true&w=majority";
 
-const mongodb = () => {
+const mongodb = async () => {
+    try {
+        await mongoose.connect(mongodbURI);
+        console.log("MongoDB connected successfully");
 
-    mongoose.connect(mongodbURI)
-        .then(() => {
-            console.log("MongoDB connected successfully");
-        })
-        .catch((error) => {
-            console.error("Error connecting to MongoDB:", error);
-        });
-}
+        const foodItemsCollection = mongoose.connection.db.collection('food_items');
+
+        const data = await foodItemsCollection.find({}).toArray();
+        console.log(data);
+
+    } catch (error) {
+        console.error("Error connecting to MongoDB or fetching data:", error);
+    }
+};
 
 module.exports = mongodb;
