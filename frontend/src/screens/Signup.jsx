@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Signup() {
-  const [credentials, setSredentials] = useState({
+  const [credentials, setCredentials] = useState({
     name: "",
     email: "",
     password: "",
@@ -13,12 +13,33 @@ function Signup() {
 
     const response = await fetch("http://localhost:5000/api/createUser", {
       method: "POST",
-      header: {
+      headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(),
+      body: JSON.stringify({
+        name: credentials.name,
+        email: credentials.email,
+        password: credentials.password,
+        location: credentials.location,
+      }),
     });
+    console.log(response);
+
+    const json = await response.json();
+    console.log(json);
+
+    if (!json.success) {
+      alert("please enter right credentials ");
+    }
   }
+
+  function onChange(event) {
+    setCredentials((prevCredentials) => ({
+      ...prevCredentials,
+      [event.target.name]: event.target.value,
+    }));
+  }
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
@@ -30,6 +51,9 @@ function Signup() {
             type="text"
             className="form-control m-2"
             placeholder="Enter Name"
+            name="name"
+            value={credentials.name}
+            onChange={onChange}
           />
         </div>
         <div className="form-group">
@@ -42,6 +66,9 @@ function Signup() {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Enter email"
+            name="email"
+            value={credentials.email}
+            onChange={onChange}
           />
           <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
@@ -56,6 +83,9 @@ function Signup() {
             className="form-control m-2"
             id="exampleInputPassword1"
             placeholder="Password"
+            name="password"
+            value={credentials.password}
+            onChange={onChange}
           />
         </div>
         <div className="form-group">
@@ -67,6 +97,9 @@ function Signup() {
             className="form-control m-2"
             id="exampleInputPassword1"
             placeholder="Enter Address"
+            name="location"
+            value={credentials.location}
+            onChange={onChange}
           />
         </div>
 
