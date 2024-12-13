@@ -3,7 +3,10 @@ const express = require("express");
 const { body, validationResult } = require("express-validator");
 const router = express.Router();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require("../models/User");
+
+const jwtSecret = "jaishreeram#123"
 router.post(
     "/createUser",
     body("email").isEmail(),
@@ -70,14 +73,24 @@ router.post(
                 })
             }
 
-            if (!(req.body.password === user.password)) {
+            let pwCompare = await bcrypt.compare(req.body.password, user.password)
+
+            if (!(pwCompare)) {
                 return res.status(400).json({
                     error: 'use Correct login credentials 2 '
                 })
             }
+            const data = {
+                user: {
+                    id: user._id
+                }
+            }
+
+            const authToken = jwt.sign(data, jwtSecret);
 
             res.json({
                 success: true,
+                token: authToken
             });
         } catch (err) {
             console.log(err);

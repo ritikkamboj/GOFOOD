@@ -28,6 +28,8 @@ function Login() {
     if (!json.success) {
       alert("please enter right credentials ");
     } else {
+      localStorage.setItem("authToken", json.token);
+      console.log(localStorage.getItem("authToken"));
       navigate("/");
     }
   }
