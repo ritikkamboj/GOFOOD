@@ -2,7 +2,7 @@ const express = require("express");
 
 const { body, validationResult } = require("express-validator");
 const router = express.Router();
-
+const bcrypt = require('bcrypt');
 const User = require("../models/User");
 router.post(
     "/createUser",
@@ -10,7 +10,13 @@ router.post(
     body("password", "Password is not of required length").isLength({ min: 5 }),
     body("name").isLength({ min: 5 }),
 
+
+
     async (req, res) => {
+
+        let salt = await bcrypt.genSalt(10);
+        let secPassword = await bcrypt.hash(req.body.password, salt)
+
         const error = validationResult(req);
         if (!error.isEmpty()) {
             return res.status(400).json({
@@ -22,7 +28,7 @@ router.post(
         try {
             await User.create({
                 name: req.body.name,
-                password: req.body.password,
+                password: secPassword,
                 email: req.body.email,
                 location: req.body.location
             });
