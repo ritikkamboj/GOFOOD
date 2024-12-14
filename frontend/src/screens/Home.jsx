@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
-import Carousal from "../components/Carousal";
+// import Carousal from "../components/Carousal";
 import { Link } from "react-router-dom";
 // import { search } from "../../../backend/routes/createUser";
 
@@ -144,10 +144,11 @@ function Home() {
                       key={filtered._id}
                     >
                       <Card
-                        food_name={filtered.name}
-                        image={filtered.img}
+                        foodItem={filtered}
+                        // food_name={filtered.name}
+                        // image={filtered.img}
                         options={filtered.options[0]}
-                        key={filtered._id}
+                        // key={filtered._id}
                       />
                     </div>
                   ))}

@@ -1,8 +1,14 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const handleButton = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-success navbar-dark">
@@ -13,39 +19,63 @@ function Navbar() {
           >
             GOFOOD
           </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav me-auto">
               <li className="nav-item">
                 <Link
-                  className="nav-link active"
+                  className="nav-link active fs-5"
                   aria-current="page"
                   to="/login"
                 >
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/login">
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/signup">
-                  Signup
-                </Link>
-              </li>
+              {localStorage.getItem("authToken") ? (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active fs-5"
+                    aria-current="page"
+                    to="/login"
+                  >
+                    My Orders
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
             </ul>
+
+            {!localStorage.getItem("authToken") ? (
+              <div className="d-flex" style={{ listStyleType: "none" }}>
+                <li className="nav-item m-2 text-success bg-white p-1 rounded">
+                  <Link className="nav-link" aria-current="page" to="/login">
+                    Login
+                  </Link>
+                </li>
+                <li className="nav-item m-2 bg-white text-success p-1 rounded">
+                  <Link className="nav-link" to="/signup">
+                    Signup
+                  </Link>
+                </li>
+              </div>
+            ) : (
+              <div className="d-flex" style={{ listStyleType: "none" }}>
+                <li className="nav-item m-2 text-success bg-white p-1 rounded">
+                  <Link className="nav-link" aria-current="page" to="/login">
+                    My Cart
+                  </Link>
+                </li>
+                <li
+                  className="nav-item m-2 bg-white text-danger p-1 rounded"
+                  onClick={handleButton}
+                >
+                  <Link className="nav-link" to="/signup">
+                    Logout
+                  </Link>
+                </li>
+              </div>
+            )}
           </div>
         </div>
       </nav>
