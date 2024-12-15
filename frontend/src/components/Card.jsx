@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 // import { Link } from "react-router-dom";
 import { CartDispatchContext, CartStateContext } from "./ContextReducer";
 
 function Card(props) {
+  const priceref = useRef();
   const dispatch = useContext(CartDispatchContext);
   const data = useContext(CartStateContext);
   const [qty, setQty] = useState("1");
@@ -26,6 +27,11 @@ function Card(props) {
     });
     console.log(data);
   }
+
+  useEffect(() => {
+    setSize(priceref.current.value);
+  }, []);
+
   return (
     <div className="m-3">
       <div
@@ -54,6 +60,7 @@ function Card(props) {
               ))}
             </select>
             <select
+              ref={priceref}
               className="bg-success m-2 text-light"
               onChange={(e) => setSize(e.target.value)}
             >
@@ -63,7 +70,7 @@ function Card(props) {
                 </option>
               ))}
             </select>
-            <div className="d-inline fs-5 text-dark h-75">Total Price </div>
+            <div className="d-inline fs-5 text-dark h-75">₹{totalprice}/-</div>
           </div>
           <hr />
           <div className=" d-flex justify-content-center">
