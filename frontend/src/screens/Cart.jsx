@@ -43,7 +43,7 @@ function Cart() {
                 <button
                   type="button"
                   className="btn btn-warning"
-                  onClick={() => dispatch({ type: "DEL" })}
+                  onClick={() => dispatch({ type: "DEL", index: index })}
                 >
                   Delete
                 </button>
@@ -52,6 +52,11 @@ function Cart() {
           ))}
         </tbody>
       </table>
+      <div className="d-block w-100">
+        <p className="fs-5 text-white m-3 d-flex justify-content-center align-items-center">
+          Total Price : ₹{total_price}/-
+        </p>
+      </div>
     </div>
   );
 }

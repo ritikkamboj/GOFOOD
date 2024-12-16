@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Badge from "react-bootstrap/Badge";
 
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "../screens/Modal";
 import Cart from "../screens/Cart";
+import { CartStateContext } from "./ContextReducer";
 
 function Navbar() {
   const [cartView, setCartView] = useState(false);
+  const cartItems = useContext(CartStateContext);
 
   const navigate = useNavigate();
 
@@ -80,7 +82,7 @@ function Navbar() {
                     My Cart
                   </span>
 
-                  <Badge bg="secondary">9</Badge>
+                  <Badge bg="secondary">{cartItems.length}</Badge>
                   {cartView ? (
                     <Modal onClose={funClose}>
                       <Cart />

@@ -17,6 +17,10 @@ const reducer = (state, action) => {
           img: action.img,
         },
       ];
+    case "DEL":
+      let newArr = [...state];
+      newArr.splice(action.index, 1);
+      return newArr;
     default:
       console.log("there is some error in reducer ");
   }
