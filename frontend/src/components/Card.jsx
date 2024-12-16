@@ -44,7 +44,7 @@ function Card(props) {
         });
         return;
       }
-      return;
+      // return;
     }
 
     dispatch({

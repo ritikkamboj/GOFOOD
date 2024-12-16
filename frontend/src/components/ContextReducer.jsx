@@ -27,12 +27,15 @@ const reducer = (state, action) => {
         if (food.id === action.id) {
           updArr[index] = {
             ...food,
-            qty: parseInt(action.qty) + parseInt(food.qty),
-            price: action.price + food.price,
+            qty: parseInt(action.qty),
+            price: action.price,
           };
         }
       });
       return updArr;
+    case "DROP":
+      let empArr = [];
+      return empArr;
     default:
       console.log("there is some error in reducer ");
   }

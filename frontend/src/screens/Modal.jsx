@@ -26,12 +26,9 @@ const OVERLAY_STYLES = {
 export default function Modal({ children, onClose }) {
   return ReactDom.createPortal(
     <>
-      <div style={OVERLAY_STYLES} onClick={onClose}>
+      <div style={OVERLAY_STYLES}>
         <div style={MODAL_STYLES}>
-          <button
-            className="btn bg-danger fs-4"
-            onClick={() => <Link to="/" />}
-          >
+          <button className="btn bg-danger fs-4" onClick={onClose}>
             X
           </button>
           {children}

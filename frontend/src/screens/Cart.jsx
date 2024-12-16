@@ -3,6 +3,7 @@ import {
   CartDispatchContext,
   CartStateContext,
 } from "../components/ContextReducer";
+// import { post } from "../../../backend/routes/OrderData";
 
 function Cart() {
   let data = useContext(CartStateContext);
@@ -14,7 +15,27 @@ function Cart() {
       <div className="w-100 text-center fs-5 text-white">NO Data Found</div>
     );
   }
+  const handleCheckout = async () => {
+    console.log(data);
+    let email2 = localStorage.getItem("userName");
 
+    let response = await fetch("http://localhost:5000/api/orderData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        order_data: data,
+        email: email2,
+        order_date: new Date().toDateString(),
+      }),
+    });
+
+    console.log("Order Response :", response);
+    if (response.status === 200) {
+      dispatch({ type: "DROP" });
+    }
+  };
   let total_price = data.reduce((total, item) => total + item.price, 0);
   console.log(total_price);
 
@@ -56,6 +77,11 @@ function Cart() {
         <p className="fs-5 text-white m-3 d-flex justify-content-center align-items-center">
           Total Price : ₹{total_price}/-
         </p>
+      </div>
+      <div className="d-flex justify-content-center align-items-center">
+        <button className="btn btn-success" onClick={handleCheckout}>
+          Check Out
+        </button>
       </div>
     </div>
   );
