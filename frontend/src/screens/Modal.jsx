@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom";
+import { Link } from "react-router-dom";
 
 const MODAL_STYLES = {
   position: "fixed",
@@ -25,10 +26,16 @@ const OVERLAY_STYLES = {
 export default function Modal({ children, onClose }) {
   return ReactDom.createPortal(
     <>
-      <div style={OVERLAY_STYLES} onClick={onClose} />
-      <div style={MODAL_STYLES}>
-        <button className="btn bg-danger fs-4">X</button>
-        {children}
+      <div style={OVERLAY_STYLES} onClick={onClose}>
+        <div style={MODAL_STYLES}>
+          <button
+            className="btn bg-danger fs-4"
+            onClick={() => <Link to="/" />}
+          >
+            X
+          </button>
+          {children}
+        </div>
       </div>
     </>,
     document.getElementById("cart-root")

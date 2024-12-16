@@ -17,6 +17,36 @@ function Card(props) {
   let totalprice = qty * parseInt(options[size]);
 
   function handleAddtoCart() {
+    let food = [];
+    for (const item of data) {
+      if (item.id === props.foodItem._id) {
+        food = item;
+        break;
+      }
+    }
+    if (food) {
+      if (food.size === size) {
+        dispatch({
+          type: "UPDATE",
+          id: food_Item._id,
+          price: totalprice,
+          qty: qty,
+        });
+        return;
+      } else if (food.size !== size) {
+        dispatch({
+          type: "ADD",
+          id: food_Item._id,
+          name: food_Item.name,
+          price: totalprice,
+          qty: qty,
+          size: size,
+        });
+        return;
+      }
+      return;
+    }
+
     dispatch({
       type: "ADD",
       id: food_Item._id,

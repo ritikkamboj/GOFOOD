@@ -21,6 +21,18 @@ const reducer = (state, action) => {
       let newArr = [...state];
       newArr.splice(action.index, 1);
       return newArr;
+    case "UPDATE":
+      let updArr = [...state];
+      updArr.find((food, index) => {
+        if (food.id === action.id) {
+          updArr[index] = {
+            ...food,
+            qty: parseInt(action.qty) + parseInt(food.qty),
+            price: action.price + food.price,
+          };
+        }
+      });
+      return updArr;
     default:
       console.log("there is some error in reducer ");
   }
