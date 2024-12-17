@@ -34,6 +34,23 @@ router.post('/orderData', async (req, res) => {
     }
 });
 
+router.post('/myOrderData', async (req, res) => {
+    try {
+
+        let myData = await Orders.findOne({ "email": req.body.email });
+        res.json({
+
+            success: true,
+            data: myData
+        })
+
+    }
+    catch (err) {
+        res.send({ success: false, message3: err.message })
+
+    }
+});
+
 
 module.exports = router;
 

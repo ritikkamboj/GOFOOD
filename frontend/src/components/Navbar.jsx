@@ -23,7 +23,7 @@ function Navbar() {
 
   const handleButton = () => {
     localStorage.removeItem("authToken");
-    navigate("/login");
+    navigate("/");
   };
   return (
     <div>
@@ -49,7 +49,7 @@ function Navbar() {
                   <Link
                     className="nav-link active fs-5"
                     aria-current="page"
-                    to="/login"
+                    to="/myorder"
                   >
                     My Orders
                   </Link>
@@ -93,7 +93,7 @@ function Navbar() {
                   className="nav-item m-2 bg-white text-danger p-1 rounded"
                   onClick={handleButton}
                 >
-                  <Link className="nav-link" to="/signup">
+                  <Link className="nav-link" to="/">
                     Logout
                   </Link>
                 </li>

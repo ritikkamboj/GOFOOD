@@ -6,6 +6,7 @@ import Login from "./screens/Login";
 import Signup from "./screens/Signup";
 import ContextReducer from "./components/ContextReducer";
 import Cart from "./screens/Cart";
+import MyOrders from "./screens/MyOrders";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/cart" element={<Cart />} />
+          <Route exact path="/myorder" element={<MyOrders />} />
         </Routes>
       </Router>
     </ContextReducer>
