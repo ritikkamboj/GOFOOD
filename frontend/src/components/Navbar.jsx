@@ -29,7 +29,7 @@ function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg bg-success navbar-dark">
         <div className="container-fluid">
-          <Link className="navbar-brand fs-1 fst-italic" to="/cart">
+          <Link className="navbar-brand fs-1 fst-italic" to="/">
             GOFOOD
           </Link>
 
